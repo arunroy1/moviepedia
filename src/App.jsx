@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import BackgroundMarquee from "./BackgroundMarquee";
+import MovieDetail from "./MovieDetail";
 import { Heart, X, Loader2 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import "./App.css";
@@ -28,6 +29,7 @@ function App() {
   const [likedMovies, setLikedMovies] = useState([]);
   const [sortBy, setSortBy] = useState("popularity"); // "popularity", "rating", "random"
   const [showIntro, setShowIntro] = useState(true);
+  const [expandedMovie, setExpandedMovie] = useState(null);
 
   // Auth State Removed
   // const [showAuthModal, setShowAuthModal] = useState(false);
@@ -131,6 +133,14 @@ function App() {
     movie.regionParams === activeRegion.params
   );
 
+  const handleExpand = (movie) => {
+    setExpandedMovie(movie);
+  };
+
+  const handleCloseExpand = () => {
+    setExpandedMovie(null);
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -150,6 +160,13 @@ function App() {
               zIndex: 3000,
               pointerEvents: 'none'
             }}
+          />
+        )}
+        {expandedMovie && (
+          <MovieDetail
+            key="movie-detail"
+            movie={expandedMovie}
+            onClose={handleCloseExpand}
           />
         )}
       </AnimatePresence>
@@ -187,7 +204,7 @@ function App() {
         Movie Pedia
       </motion.div>
 
-      <BackgroundMarquee />
+      <BackgroundMarquee paused={!!expandedMovie} />
 
       <div className="app-container">
         <motion.div
@@ -264,7 +281,7 @@ function App() {
                 ) : cards.length > 0 ? (
                   cards.slice(-3).map((movie) => (
                     <div key={movie.id} className="card-wrapper">
-                      <Card movie={movie} removeCard={removeCard} />
+                      <Card movie={movie} removeCard={removeCard} onExpand={handleExpand} />
                     </div>
                   ))
                 ) : (
@@ -318,7 +335,7 @@ function App() {
           <div className="liked-grid">
             {filteredLikedMovies.length > 0 ? (
               filteredLikedMovies.map(movie => (
-                <div key={movie.id} className="liked-card">
+                <div key={movie.id} className="liked-card" onClick={() => handleExpand(movie)}>
                   <img src={movie.img} alt={movie.title} />
                   <div className="liked-info">
                     <h3>{movie.title}</h3>

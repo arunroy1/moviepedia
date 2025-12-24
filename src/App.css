@@ -425,6 +425,12 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.liked-card:hover {
+  transform: scale(1.02);
 }
 
 .liked-card img {

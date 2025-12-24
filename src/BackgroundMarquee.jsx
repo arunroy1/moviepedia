@@ -5,7 +5,7 @@ const API_KEY = "d9c1d4362d918aad39b75b1d4d4df372";
 const BASE_URL = "https://api.themoviedb.org/3/movie/popular";
 const IMAGE_URL = "https://image.tmdb.org/t/p/w300"; // Smaller images for background
 
-const BackgroundMarquee = () => {
+const BackgroundMarquee = ({ paused }) => {
     const [posters, setPosters] = useState([]);
 
     useEffect(() => {
@@ -43,7 +43,13 @@ const BackgroundMarquee = () => {
     // We duplicate the content to ensure seamless loop
     const MarqueeRow = ({ images, direction, speed }) => (
         <div className={`marquee-row ${direction}`}>
-            <div className="marquee-content" style={{ animationDuration: `${speed}s` }}>
+            <div
+                className="marquee-content"
+                style={{
+                    animationDuration: `${speed}s`,
+                    animationPlayState: paused ? "paused" : "running"
+                }}
+            >
                 {images.map((src, i) => (
                     <img key={`orig-${i}`} src={src} alt="" />
                 ))}
