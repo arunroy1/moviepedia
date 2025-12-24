@@ -1,0 +1,107 @@
+.marquee-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    /* Behind everything */
+    overflow: hidden;
+    background: transparent;
+    pointer-events: none;
+    /* Don't intercept clicks */
+}
+
+.marquee-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    transform: rotate(-5deg) scale(1.3);
+    /* Increased scale to cover edges after rotation */
+    animation: cinematicSway 12s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes cinematicSway {
+    0% {
+        transform: rotate(-5deg) scale(1.3);
+    }
+
+    50% {
+        transform: rotate(-2deg) scale(1.3);
+    }
+
+    100% {
+        transform: rotate(-5deg) scale(1.3);
+    }
+}
+
+.marquee-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.85);
+    /* Heavy dark overlay */
+    z-index: 2;
+    backdrop-filter: blur(2px);
+}
+
+.marquee-row {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0.4;
+    /* Dim the images */
+}
+
+.marquee-content {
+    display: flex;
+    gap: 10px;
+}
+
+.marquee-content img {
+    width: 150px;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Animations */
+.left .marquee-content {
+    animation: scrollLeft linear infinite;
+}
+
+.right .marquee-content {
+    animation: scrollRight linear infinite;
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Tablet/Desktop tweaks */
+@media (max-width: 768px) {
+    .marquee-content img {
+        width: 100px;
+        height: 150px;
+    }
+}

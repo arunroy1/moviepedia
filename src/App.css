@@ -1,0 +1,494 @@
+/* Styles for Region Selector */
+.region-selector {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: #333;
+  color: white;
+  border: 1px solid #444;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  background: #444;
+}
+
+.chip.active {
+  background: #fff;
+  color: black;
+  font-weight: bold;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* persistent background title */
+.background-title {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: min(15vw, 10rem);
+  font-weight: 800;
+  color: white;
+  opacity: 0.12;
+  filter: blur(6px);
+  z-index: 1;
+  pointer-events: none;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .background-title {
+    font-size: min(20vw, 6rem);
+  }
+}
+
+/* Card Stack Styles */
+.app-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  height: 100vh;
+  /* Force single screen */
+  overflow: hidden;
+  box-sizing: border-box;
+  perspective: 1200px;
+  background-color: transparent;
+  z-index: 2;
+}
+
+/* Header taking up minimal space */
+.header {
+  flex: 0 0 auto;
+  margin-bottom: 5px;
+  /* Reduced */
+}
+
+.header h1 {
+  font-size: 2rem;
+  /* Reduced */
+  margin: 10px 0;
+}
+
+/* Controls bar (regions) */
+.controls-bar {
+  flex: 0 0 auto;
+  margin-bottom: 10px;
+  z-index: 10;
+}
+
+.stack-container {
+  flex: 1;
+  /* Take up all remaining vertical space */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 0;
+  /* Prevent overflow issues in flex items */
+}
+
+.card-stack {
+  position: relative;
+  width: 100%;
+  max-width: 330px;
+  /* Reduced from 360px */
+  height: 48vh;
+  /* Reduced from 52vh */
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  margin-bottom: 10px;
+  /* Add explicit margin to push buttons away */
+  will-change: transform, opacity;
+}
+
+.card-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: auto;
+  /* Let aspect ratio define width based on height */
+  height: 100%;
+  /* Fix aspect ratio roughly to poster shape */
+  aspect-ratio: 4/5;
+  /* Requested aspect ratio */
+  max-height: 100%;
+  /* Don't exceed stack height */
+  background: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  will-change: transform;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  /* Reduced padding */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Typography adjustment for small screens */
+.card-content h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.2rem;
+  /* Reduced */
+}
+
+.card-content span {
+  display: block;
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.card-content p {
+  font-size: 0.85rem;
+  line-height: 1.2;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Bottom buttons */
+.controls {
+  flex: 0 0 auto;
+  margin-top: auto;
+  margin-bottom: 25px;
+  /* Increased bottom spacing */
+  display: flex;
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.btn {
+  width: 64px;
+  /* Rectangular width */
+  height: 42px;
+  /* Rectangular height */
+  padding: 0;
+  border-radius: 12px;
+  /* Smooth bevel */
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-nope {
+  background: #1e1e1e;
+  color: #ff4b4b;
+}
+
+.btn-like {
+  background: #1e1e1e;
+  color: #4bff7d;
+}
+
+.btn svg {
+  width: 20px !important;
+  /* Further reduced icon size */
+  height: 20px !important;
+  stroke-width: 2.5px !important;
+  flex-shrink: 0;
+}
+
+.empty-state {
+  text-align: center;
+}
+
+/* Tablet Responsive */
+@media (min-width: 768px) {
+  .app-container {
+    padding-top: 20px;
+  }
+
+  .card-stack {
+    max-width: 380px;
+    /* Reduced from 420px */
+    height: 55vh;
+    /* Reduced from 60vh */
+  }
+
+  .card-content h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Desktop Responsive */
+@media (min-width: 1024px) {
+  .app-container {
+    max-width: 1200px;
+  }
+
+  /* Relax constraints on large screens */
+  /* Relax constraints on large screens */
+  .card-stack {
+    max-width: 400px;
+    /* Reduced from 450px */
+    height: 60vh;
+    /* Reduced from 65vh */
+  }
+
+  .card-content {
+    padding: 25px;
+  }
+
+  .card-content h3 {
+    font-size: 1.8rem;
+  }
+
+  .card-content p {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Make buttons noticeably larger on desktop */
+  /* Make buttons slightly larger on desktop but still compact */
+  .btn {
+    width: 80px;
+    height: 52px;
+  }
+
+  .btn svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+/* Header & Toggle */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.view-toggle {
+  display: flex;
+  background: #333;
+  padding: 4px;
+  border-radius: 24px;
+  gap: 4px;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 20px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.toggle-btn.active {
+  background: #fff;
+  color: black;
+  font-weight: bold;
+}
+
+.toggle-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Controls Bar */
+.controls-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 30px;
+}
+
+.sort-select {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #333;
+  color: white;
+  border: 1px solid #444;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Liked Grid */
+.liked-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.liked-grid .empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.liked-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.liked-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.liked-info {
+  padding: 12px;
+}
+
+.liked-info h3 {
+  font-size: 1rem;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.liked-info span {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 480px) {
+  .background-title {
+    font-size: 10vw;
+    /* Fit "Movie Pedia" better */
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .auth-controls {
+    /* On mobile, let's keep it top-right but maybe smaller or flow it? 
+       Actually, absolute top right is fine if we make space. 
+    */
+    top: 10px !important;
+    right: 10px !important;
+  }
+
+  .auth-btn span {
+    display: none;
+    /* Hide text, show only icon on super small screens */
+  }
+
+  .stack-container {
+    justify-content: flex-start;
+    /* Align top instead of center */
+    padding-top: 10px;
+    /* Slight offset from controls */
+    padding-bottom: 20px;
+    /* Push bottom content down */
+  }
+
+  .card-stack {
+    height: 38vh;
+    /* Reduced from 45vh */
+    max-width: 80vw;
+    /* Reduced from 85vw */
+  }
+}
