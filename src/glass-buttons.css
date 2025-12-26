@@ -166,10 +166,10 @@
     .glass-btn {
         /* Side strips aligned with card */
         position: fixed;
-        top: 25%;
+        top: 290px;
 
-        /* Match card height roughly */
-        height: 55vh;
+        /* Match card height */
+        height: 50vh;
         width: 50px;
         max-width: none;
         aspect-ratio: auto;
