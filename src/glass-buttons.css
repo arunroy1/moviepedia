@@ -188,6 +188,18 @@
         box-shadow: none;
 
         z-index: 5;
+
+        /* Fade at top and bottom edges */
+        -webkit-mask-image: linear-gradient(to bottom,
+                transparent 0%,
+                black 15%,
+                black 85%,
+                transparent 100%);
+        mask-image: linear-gradient(to bottom,
+                transparent 0%,
+                black 15%,
+                black 85%,
+                transparent 100%);
     }
 
     .glass-btn-left {
@@ -228,21 +240,57 @@
                 rgba(46, 255, 116, 0) 100%);
     }
 
+    /* Large 3D icons with animated gradient */
     .glass-btn svg {
-        width: 22px !important;
-        height: 22px !important;
-        opacity: 0.9;
+        width: 40px !important;
+        height: 40px !important;
+        opacity: 1;
         position: static;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
 
     .glass-btn-left svg {
         margin-right: auto;
-        margin-left: 10px;
+        margin-left: 5px;
+        color: #ff6b6b;
+        animation: pulseRed 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 10px rgba(255, 80, 80, 0.8)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
     }
 
     .glass-btn-right svg {
         margin-left: auto;
-        margin-right: 10px;
+        margin-right: 5px;
+        color: #6bff8b;
+        animation: pulseGreen 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 10px rgba(80, 255, 120, 0.8)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    }
+
+    @keyframes pulseRed {
+
+        0%,
+        100% {
+            filter: drop-shadow(0 0 8px rgba(255, 80, 80, 0.6)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+            transform: scale(1);
+        }
+
+        50% {
+            filter: drop-shadow(0 0 20px rgba(255, 80, 80, 1)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+            transform: scale(1.1);
+        }
+    }
+
+    @keyframes pulseGreen {
+
+        0%,
+        100% {
+            filter: drop-shadow(0 0 8px rgba(80, 255, 120, 0.6)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+            transform: scale(1);
+        }
+
+        50% {
+            filter: drop-shadow(0 0 20px rgba(80, 255, 120, 1)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+            transform: scale(1.1);
+        }
     }
 }
 
