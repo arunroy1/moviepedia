@@ -9,6 +9,9 @@
     justify-content: center;
     z-index: 10000;
     pointer-events: none;
+    will-change: opacity, transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 .intro-content {

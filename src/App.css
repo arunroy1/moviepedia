@@ -46,22 +46,19 @@
 
 /* persistent background title */
 .background-title {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-size: min(15vw, 10rem);
   font-weight: 800;
   color: white;
-  opacity: 0.12;
-  filter: blur(6px);
-  z-index: 1;
   pointer-events: none;
   text-align: center;
-  width: 100%;
   white-space: nowrap;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -460,41 +457,66 @@
 @media (max-width: 480px) {
   .background-title {
     font-size: 10vw;
-    /* Fit "Movie Pedia" better */
   }
 
   .header {
     flex-direction: column;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 8px;
+    margin-bottom: 12px;
   }
 
   .auth-controls {
-    /* On mobile, let's keep it top-right but maybe smaller or flow it? 
-       Actually, absolute top right is fine if we make space. 
-    */
     top: 10px !important;
     right: 10px !important;
   }
 
   .auth-btn span {
     display: none;
-    /* Hide text, show only icon on super small screens */
   }
 
   .stack-container {
-    justify-content: flex-start;
-    /* Align top instead of center */
-    padding-top: 10px;
-    /* Slight offset from controls */
-    padding-bottom: 20px;
-    /* Push bottom content down */
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 15px;
+    align-items: center;
   }
 
   .card-stack {
-    height: 38vh;
-    /* Reduced from 45vh */
-    max-width: 80vw;
-    /* Reduced from 85vw */
+    height: 42vh;
+    max-width: 70vw;
+    min-height: 220px;
+  }
+
+  .controls-bar {
+    margin-bottom: 15px;
+  }
+
+  .region-selector {
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .chip {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .card-stack {
+    height: 36vh;
+    max-width: 65vw;
+    min-height: 180px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .chip {
+    padding: 5px 10px;
+    font-size: 0.75rem;
   }
 }

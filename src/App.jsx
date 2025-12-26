@@ -143,13 +143,17 @@ function App() {
 
   return (
     <>
+      {/* Intro Curtain - covers everything during intro */}
       <AnimatePresence>
         {showIntro && (
           <motion.div
             className="intro-curtain"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, delay: 0.5 }}
+            transition={{
+              duration: 1.2,
+              ease: [0.4, 0, 0.2, 1]
+            }}
             style={{
               position: 'fixed',
               top: 0,
@@ -158,10 +162,16 @@ function App() {
               height: '100%',
               backgroundColor: '#0a0a0b',
               zIndex: 3000,
-              pointerEvents: 'none'
+              pointerEvents: 'none',
+              willChange: 'opacity',
+              transform: 'translateZ(0)'
             }}
           />
         )}
+      </AnimatePresence>
+
+      {/* Movie Detail Modal */}
+      <AnimatePresence>
         {expandedMovie && (
           <MovieDetail
             key="movie-detail"
@@ -171,34 +181,34 @@ function App() {
         )}
       </AnimatePresence>
 
+      {/* Background Title - unified animation from intro to background */}
       <motion.div
         className="background-title"
         initial={{
           opacity: 0,
-          zIndex: 3001,
-          scale: 1,
-          x: "-50%",
-          y: "-50%",
+          scale: 1.02,
+          filter: "blur(0px)",
         }}
-        animate={showIntro ? {
-          opacity: 1,
-          zIndex: 3001,
+        animate={{
+          opacity: showIntro ? 1 : 0.12,
           scale: 1,
-          x: "-50%",
-          y: "-50%",
-          transition: { duration: 1.5, ease: "easeOut" }
-        } : {
-          opacity: 0.12,
-          filter: "blur(2px)",
+          filter: showIntro ? "blur(0px)" : "blur(6px)",
+        }}
+        transition={{
+          duration: 2,
+          ease: [0.4, 0, 0.2, 1]
+        }}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           zIndex: 3001,
-          scale: 1,
-          x: "-50%",
-          y: "-50%",
-          transition: {
-            duration: 2,
-            ease: "easeInOut"
-          },
-          transitionEnd: { zIndex: 1 }
+          willChange: 'opacity, filter',
         }}
       >
         Movie Pedia

@@ -9,25 +9,20 @@
     /* Vertically center */
     top: 50%;
 
-    /* Dimensions - 85% of App.css .card-stack (Balanced) */
-    height: 41vh;
-    /* 85% of 48vh */
-    /* Mobile default */
+    /* Dimensions - 75% of App.css .card-stack for better fit */
+    height: 36vh;
+    /* Mobile default - reduced for better spacing */
     width: auto;
     aspect-ratio: 4/5;
-    max-width: 280px;
-    /* 85% of 330px */
+    max-width: 240px;
     max-height: 100%;
 
     /* Glass Effect Base */
-    background: rgba(20, 20, 20, 0.4);
-    /* Darker semi-transparent base */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(20, 20, 20, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
-    /* Match card radius */
     z-index: 0;
-    /* Behind main card */
 
     cursor: pointer;
     display: flex;
@@ -35,15 +30,17 @@
     justify-content: center;
     pointer-events: auto;
 
-    /* Smooth transitions for hover effects */
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* GPU-accelerated transitions */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        opacity 0.3s ease,
+        box-shadow 0.3s ease;
 
-    /* Initial transform handle by Framer Motion, but we set a transform-origin */
-    transform-origin: center bottom;
+    transform-origin: center center;
     will-change: transform, opacity;
-    /* Optimize rendering */
     -webkit-font-smoothing: antialiased;
     backface-visibility: hidden;
+    /* GPU acceleration */
+    transform: translateZ(0);
 }
 
 /* Icons within the glass cards */
@@ -153,29 +150,45 @@
 }
 
 /* Mobile Tweak (Small screens) */
-/* Mobile Tweak (Small screens) */
-/* Mobile Tweak */
-/* Mobile Tweak */
 @media (max-width: 480px) {
     .glass-btn {
-        height: 38vh;
-        /* 85% of 45vh */
-        width: 55vw;
-        max-width: 210px;
+        height: 32vh;
+        width: auto;
+        max-width: 160px;
     }
 
     .glass-btn-left {
-        margin-left: -120px;
-        /* Fan out */
+        margin-left: -100px;
     }
 
     .glass-btn-right {
-        margin-left: 120px;
+        margin-left: 100px;
     }
 
     .glass-btn svg {
-        width: 35px !important;
-        height: 35px !important;
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .glass-btn {
+        height: 28vh;
+        max-width: 130px;
+    }
+
+    .glass-btn-left {
+        margin-left: -85px;
+    }
+
+    .glass-btn-right {
+        margin-left: 85px;
+    }
+
+    .glass-btn svg {
+        width: 24px !important;
+        height: 24px !important;
     }
 }
 
