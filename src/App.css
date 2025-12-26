@@ -510,16 +510,16 @@
   }
 
   .stack-container {
-    justify-content: center;
-    padding-top: 0;
-    padding-bottom: 15px;
+    justify-content: flex-start;
+    padding-top: 15px;
+    padding-bottom: 100px;
     align-items: center;
   }
 
   .card-stack {
-    height: 42vh;
+    height: 50vh;
     max-width: 70vw;
-    min-height: 220px;
+    min-height: 280px;
   }
 
   .controls-bar {
