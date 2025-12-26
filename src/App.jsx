@@ -309,12 +309,12 @@ function App() {
                   <motion.button
                     className="glass-btn glass-btn-left"
                     onClick={() => removeCard(cards[cards.length - 1].id, false)}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, x: 100, y: "-50%", scale: 0.8, rotate: 0 }}
+                    animate={{ opacity: 1, x: 0, y: "-50%", scale: 1, rotate: -12 }}
                     exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.6, type: "spring", bounce: 0.4 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
+                    whileHover={{ scale: 1.05, rotate: -15 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <X />
                   </motion.button>
@@ -323,12 +323,12 @@ function App() {
                   <motion.button
                     className="glass-btn glass-btn-right"
                     onClick={() => removeCard(cards[cards.length - 1].id, true)}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, x: -100, y: "-50%", scale: 0.8, rotate: 0 }}
+                    animate={{ opacity: 1, x: 0, y: "-50%", scale: 1, rotate: 12 }}
                     exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.6, type: "spring", bounce: 0.4 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
+                    whileHover={{ scale: 1.05, rotate: 15 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <Heart fill="currentColor" />
                   </motion.button>
