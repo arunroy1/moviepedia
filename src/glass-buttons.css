@@ -161,25 +161,25 @@
     }
 }
 
-/* Mobile Tweak (Small screens) - Vertical gradient side strips */
+/* Mobile Tweak (Small screens) - Horizontal gradient side strips */
 @media (max-width: 480px) {
     .glass-btn {
-        /* Vertical strips on the sides */
+        /* Side strips aligned with card */
         position: fixed;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 25%;
 
-        /* Tall vertical strips */
-        height: 60vh;
-        width: 45px;
+        /* Match card height roughly */
+        height: 55vh;
+        width: 50px;
         max-width: none;
         aspect-ratio: auto;
         border-radius: 0;
 
-        /* Reset margins */
+        /* Reset margins and transform */
         margin-left: 0 !important;
+        transform: none;
 
-        /* Transparent base - gradient will be applied per button */
+        /* Transparent base */
         background: transparent;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
@@ -191,67 +191,81 @@
 
     .glass-btn-left {
         left: 0;
-        /* Red gradient fading upward */
-        background: linear-gradient(to top,
-                rgba(255, 50, 50, 0.7) 0%,
-                rgba(255, 50, 50, 0.5) 20%,
-                rgba(255, 50, 50, 0.2) 50%,
+        /* Red gradient: solid at left edge, fading toward card */
+        background: linear-gradient(to right,
+                rgba(255, 50, 50, 0.8) 0%,
+                rgba(255, 50, 50, 0.5) 40%,
+                rgba(255, 50, 50, 0.1) 80%,
                 rgba(255, 50, 50, 0) 100%);
-        border-right: 2px solid rgba(255, 60, 60, 0.3);
-        border-radius: 0 12px 12px 0;
+        border-radius: 0;
     }
 
     .glass-btn-right {
         right: 0;
-        /* Green gradient fading upward */
-        background: linear-gradient(to top,
-                rgba(46, 255, 116, 0.7) 0%,
-                rgba(46, 255, 116, 0.5) 20%,
-                rgba(46, 255, 116, 0.2) 50%,
+        /* Green gradient: solid at right edge, fading toward card */
+        background: linear-gradient(to left,
+                rgba(46, 255, 116, 0.8) 0%,
+                rgba(46, 255, 116, 0.5) 40%,
+                rgba(46, 255, 116, 0.1) 80%,
                 rgba(46, 255, 116, 0) 100%);
-        border-left: 2px solid rgba(46, 255, 116, 0.3);
-        border-radius: 12px 0 0 12px;
+        border-radius: 0;
     }
 
     .glass-btn-left:active {
-        background: linear-gradient(to top,
-                rgba(255, 50, 50, 0.9) 0%,
-                rgba(255, 50, 50, 0.6) 30%,
-                rgba(255, 50, 50, 0.2) 60%,
+        background: linear-gradient(to right,
+                rgba(255, 50, 50, 1) 0%,
+                rgba(255, 50, 50, 0.7) 40%,
+                rgba(255, 50, 50, 0.2) 80%,
                 rgba(255, 50, 50, 0) 100%);
     }
 
     .glass-btn-right:active {
-        background: linear-gradient(to top,
-                rgba(46, 255, 116, 0.9) 0%,
-                rgba(46, 255, 116, 0.6) 30%,
-                rgba(46, 255, 116, 0.2) 60%,
+        background: linear-gradient(to left,
+                rgba(46, 255, 116, 1) 0%,
+                rgba(46, 255, 116, 0.7) 40%,
+                rgba(46, 255, 116, 0.2) 80%,
                 rgba(46, 255, 116, 0) 100%);
     }
 
     .glass-btn svg {
-        width: 24px !important;
-        height: 24px !important;
+        width: 22px !important;
+        height: 22px !important;
         opacity: 0.9;
-        /* Position icon at bottom of strip */
-        position: absolute;
-        bottom: 30px;
+        position: static;
+    }
+
+    .glass-btn-left svg {
+        margin-right: auto;
+        margin-left: 10px;
+    }
+
+    .glass-btn-right svg {
+        margin-left: auto;
+        margin-right: 10px;
     }
 }
 
 /* Extra small screens */
 @media (max-width: 360px) {
     .glass-btn {
-        width: 38px;
+        width: 40px;
         height: 50vh;
     }
 
     .glass-btn svg {
-        width: 20px !important;
-        height: 20px !important;
-        bottom: 25px;
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .glass-btn-left svg {
+        margin-left: 8px;
+    }
+
+    .glass-btn-right svg {
+        margin-right: 8px;
     }
 }
+
 
 /* Desktop */
 /* Desktop */
