@@ -175,9 +175,10 @@
         aspect-ratio: auto;
         border-radius: 0;
 
-        /* Reset margins and transform */
+        /* Reset margins and transform - force no rotation */
         margin-left: 0 !important;
-        transform: none;
+        transform: none !important;
+        rotate: 0deg !important;
 
         /* Transparent base */
         background: transparent;
