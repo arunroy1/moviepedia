@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import { Info } from "lucide-react";
 
 const Card = ({ movie, removeCard, onExpand }) => {
   const x = useMotionValue(0);
@@ -14,22 +15,29 @@ const Card = ({ movie, removeCard, onExpand }) => {
     }
   };
 
+  const handleViewDetails = (e) => {
+    e.stopPropagation();
+    onExpand && onExpand(movie);
+  };
+
   return (
     <motion.div
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
       onDragEnd={handleDragEnd}
-      style={{ x, rotate, opacity, cursor: "pointer" }}
+      style={{ x, rotate, opacity }}
       className="card"
-      onTap={() => onExpand && onExpand(movie)}
       whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
     >
       <div className="card-image" style={{ backgroundImage: `url(${movie.img})` }}></div>
       <div className="card-content">
         <h3>{movie.title}</h3>
         <span>{movie.genre}</span>
         <p>{movie.desc}</p>
+        <button className="view-details-btn" onClick={handleViewDetails}>
+          <Info size={16} />
+          View Details
+        </button>
       </div>
     </motion.div>
   );
