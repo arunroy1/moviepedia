@@ -304,20 +304,17 @@ function App() {
 
               {/* Only show buttons if we have cards */}
               {!loading && cards.length > 0 && (
-                <>
+                <div className="mobile-button-container">
                   {/* Dislike - Left */}
                   <motion.button
                     className="glass-btn glass-btn-left"
                     onClick={() => removeCard(cards[cards.length - 1].id, false)}
-                    // Initial: Shifted RIGHT towards center, centered vertically
-                    initial={{ opacity: 0, x: 100, y: "-50%", scale: 0.8, rotate: 0 }}
-                    // Animate: To natural CSS position (x:0), centered vertically, rotated out
-                    animate={{ opacity: 1, x: 0, y: "-50%", scale: 1, rotate: -12 }}
-                    // Exit: Fade out
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
-                    whileHover={{ scale: 1.05, rotate: -15 }}
-                    whileTap={{ scale: 0.95 }}
+                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.6, type: "spring", bounce: 0.4 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     <X />
                   </motion.button>
@@ -326,18 +323,16 @@ function App() {
                   <motion.button
                     className="glass-btn glass-btn-right"
                     onClick={() => removeCard(cards[cards.length - 1].id, true)}
-                    // Initial: Shifted LEFT towards center, centered vertically
-                    initial={{ opacity: 0, x: -100, y: "-50%", scale: 0.8, rotate: 0 }}
-                    // Animate: To natural CSS position (x:0), centered vertically, rotated out
-                    animate={{ opacity: 1, x: 0, y: "-50%", scale: 1, rotate: 12 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.8, type: "spring", bounce: 0.4 }}
-                    whileHover={{ scale: 1.05, rotate: 15 }}
-                    whileTap={{ scale: 0.95 }}
+                    transition={{ delay: showIntro ? 3.8 : 0.2, duration: 0.6, type: "spring", bounce: 0.4 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     <Heart fill="currentColor" />
                   </motion.button>
-                </>
+                </div>
               )}
             </div>
           </>
